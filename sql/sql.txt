@@ -1,0 +1,129 @@
+-- cz_user
+ALTER TABLE cz_user
+	DROP CONSTRAINT PK_cz_user; -- cz_user 기본키
+
+-- cz_user
+DROP TABLE cz_user;
+
+-- cz_user
+CREATE TABLE cz_user (
+	unum    INTEGER      NOT NULL, -- 유저번호
+	pw      VARCHAR(30)  NOT NULL, -- 비밀번호
+	name    VARCHAR(20)  NOT NULL, -- 이름
+	regdate DATE         NULL,     -- 가입일
+	nicnm   VARCHAR(20)  NOT NULL, -- 별명
+	email   VARCHAR(40)  NOT NULL, -- 이메일
+	phone   VARCHAR(20)  NULL,     -- 전화번호
+	profil  VARCHAR(100) NULL,     -- 프로필사진
+	pinfo   VARCHAR(100) NULL      -- 프로필설명
+);
+
+-- cz_user 기본키
+CREATE UNIQUE INDEX PK_cz_user
+	ON cz_user ( -- cz_user
+		unum ASC -- 유저번호
+	);
+
+-- cz_user
+ALTER TABLE cz_user
+	ADD
+		CONSTRAINT PK_cz_user -- cz_user 기본키
+		PRIMARY KEY (
+			unum -- 유저번호
+		);
+
+---------------------------------------
+-- cz_content
+ALTER TABLE cz_content
+	DROP CONSTRAINT FK_cz_user_TO_cz_content; -- cz_user -> cz_content
+
+-- cz_content
+ALTER TABLE cz_content
+	DROP CONSTRAINT PK_cz_content; -- cz_content 기본키
+
+-- cz_content
+DROP TABLE cz_content;
+
+-- cz_content
+CREATE TABLE cz_content (
+	cnum    INTEGER       NOT NULL, -- cnum
+	unum    INTEGER       NULL,     -- 유저번호
+	cate    INTEGER       NULL,     -- 카테고리
+	flag    INTEGER       NULL,     -- 공개유무
+	ctitle  VARCHAR(30)   NULL,     -- 제목
+	content VARCHAR(1000) NULL,     -- 내용
+	tag     VARCHAR(100)  NULL,     -- 태그
+	hits    INTEGER       NULL,     -- 조회수
+	imgfile VARCHAR(200)  NULL,     -- 이미지
+	likes   INTEGER       NULL,     -- 추천
+	ctime   DATE          NULL      -- 게시시간
+);
+
+-- cz_content 기본키
+CREATE UNIQUE INDEX PK_cz_content
+	ON cz_content ( -- cz_content
+		cnum ASC -- cnum
+	);
+
+-- cz_content
+ALTER TABLE cz_content
+	ADD
+		CONSTRAINT PK_cz_content -- cz_content 기본키
+		PRIMARY KEY (
+			cnum -- cnum
+		);
+
+-- cz_content
+ALTER TABLE cz_content
+	ADD
+		CONSTRAINT FK_cz_user_TO_cz_content -- cz_user -> cz_content
+		FOREIGN KEY (
+			unum -- 유저번호
+		)
+		REFERENCES cz_user ( -- cz_user
+			unum -- 유저번호
+		);
+
+-------------------------------------------
+-- cz_fallow
+ALTER TABLE cz_fallow
+	DROP CONSTRAINT FK_cz_user_TO_cz_fallow; -- cz_user -> cz_fallow
+
+-- cz_fallow
+ALTER TABLE cz_fallow
+	DROP CONSTRAINT FK_cz_user_TO_cz_fallow2; -- cz_user -> cz_fallow2
+
+-- cz_fallow
+DROP TABLE cz_fallow;
+
+-- cz_fallow
+CREATE TABLE cz_fallow (
+	unum_t INTEGER NOT NULL, -- 셀럽
+	unum_s INTEGER NULL      -- 팔로워
+);
+
+-- cz_fallow
+ALTER TABLE cz_fallow
+	ADD
+		CONSTRAINT FK_cz_user_TO_cz_fallow -- cz_user -> cz_fallow
+		FOREIGN KEY (
+			unum_t -- 셀럽
+		)
+		REFERENCES cz_user ( -- cz_user
+			unum -- 유저번호
+		);
+
+-- cz_fallow
+ALTER TABLE cz_fallow
+	ADD
+		CONSTRAINT FK_cz_user_TO_cz_fallow2 -- cz_user -> cz_fallow2
+		FOREIGN KEY (
+			unum_s -- 팔로워
+		)
+		REFERENCES cz_user ( -- cz_user
+			unum -- 유저번호
+		)
+		;
+------------------------------------------
+
+
