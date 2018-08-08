@@ -1,37 +1,38 @@
 -- cz_user
 ALTER TABLE cz_user
-	DROP CONSTRAINT PK_cz_user; -- cz_user ±âº»Å°
+	DROP CONSTRAINT PK_cz_user; -- cz_user ï¿½âº»Å°
 
 -- cz_user
 DROP TABLE cz_user;
 
 -- cz_user
 CREATE TABLE cz_user (
-	unum    INTEGER      NOT NULL, -- À¯Àú¹øÈ£
-	pw      VARCHAR(30)  NOT NULL, -- ºñ¹Ð¹øÈ£
-	name    VARCHAR(20)  NOT NULL, -- ÀÌ¸§
-	regdate DATE         NULL,     -- °¡ÀÔÀÏ
-	nicnm   VARCHAR(20)  NOT NULL, -- º°¸í
-	email   VARCHAR(40)  NOT NULL, -- ÀÌ¸ÞÀÏ
-	phone   VARCHAR(20)  NULL,     -- ÀüÈ­¹øÈ£
-	profil  VARCHAR(100) NULL,     -- ÇÁ·ÎÇÊ»çÁø
-	pinfo   VARCHAR(100) NULL      -- ÇÁ·ÎÇÊ¼³¸í
+	unum    INTEGER      NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	pw      VARCHAR(30)  NOT NULL, -- ï¿½ï¿½Ð¹ï¿½È£
+	name    VARCHAR(20)  NOT NULL, -- ï¿½Ì¸ï¿½
+	regdate DATE         NULL,     -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	nicnm   VARCHAR(20)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½
+	email   VARCHAR(40)  NOT NULL, -- ï¿½Ì¸ï¿½ï¿½ï¿½
+	phone   VARCHAR(20)  NULL,     -- ï¿½ï¿½È­ï¿½ï¿½È£
+	profil  VARCHAR(100) NULL,     -- ï¿½ï¿½ï¿½ï¿½ï¿½Ê»ï¿½ï¿½ï¿½
+	pinfo   VARCHAR(100) NULL      -- ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½
 );
 
--- cz_user ±âº»Å°
+-- cz_user ï¿½âº»Å°
 CREATE UNIQUE INDEX PK_cz_user
 	ON cz_user ( -- cz_user
-		unum ASC -- À¯Àú¹øÈ£
+		unum ASC -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	);
 
 -- cz_user
 ALTER TABLE cz_user
 	ADD
-		CONSTRAINT PK_cz_user -- cz_user ±âº»Å°
+		CONSTRAINT PK_cz_user -- cz_user ï¿½âº»Å°
 		PRIMARY KEY (
-			unum -- À¯Àú¹øÈ£
+			unum -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		);
-
+--ì¶”ê°€
+alter table cz_user add (id varchar(40));
 ---------------------------------------
 -- cz_content
 ALTER TABLE cz_content
@@ -39,7 +40,7 @@ ALTER TABLE cz_content
 
 -- cz_content
 ALTER TABLE cz_content
-	DROP CONSTRAINT PK_cz_content; -- cz_content ±âº»Å°
+	DROP CONSTRAINT PK_cz_content; -- cz_content ï¿½âº»Å°
 
 -- cz_content
 DROP TABLE cz_content;
@@ -47,19 +48,19 @@ DROP TABLE cz_content;
 -- cz_content
 CREATE TABLE cz_content (
 	cnum    INTEGER       NOT NULL, -- cnum
-	unum    INTEGER       NULL,     -- À¯Àú¹øÈ£
-	cate    INTEGER       NULL,     -- Ä«Å×°í¸®
-	flag    INTEGER       NULL,     -- °ø°³À¯¹«
-	ctitle  VARCHAR(30)   NULL,     -- Á¦¸ñ
-	content VARCHAR(1000) NULL,     -- ³»¿ë
-	tag     VARCHAR(100)  NULL,     -- ÅÂ±×
-	hits    INTEGER       NULL,     -- Á¶È¸¼ö
-	imgfile VARCHAR(200)  NULL,     -- ÀÌ¹ÌÁö
-	likes   INTEGER       NULL,     -- ÃßÃµ
-	ctime   DATE          NULL      -- °Ô½Ã½Ã°£
+	unum    INTEGER       NULL,     -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	cate    INTEGER       NULL,     -- Ä«ï¿½×°ï¿½
+	flag    INTEGER       NULL,     -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ctitle  VARCHAR(30)   NULL,     -- ï¿½ï¿½ï¿½ï¿½
+	content VARCHAR(1000) NULL,     -- ï¿½ï¿½ï¿½ï¿½
+	tag     VARCHAR(100)  NULL,     -- ï¿½Â±ï¿½
+	hits    INTEGER       NULL,     -- ï¿½ï¿½È¸ï¿½ï¿½
+	imgfile VARCHAR(200)  NULL,     -- ï¿½Ì¹ï¿½ï¿½ï¿½
+	likes   INTEGER       NULL,     -- ï¿½ï¿½Ãµ
+	ctime   DATE          NULL      -- ï¿½Ô½Ã½Ã°ï¿½
 );
 
--- cz_content ±âº»Å°
+-- cz_content ï¿½âº»Å°
 CREATE UNIQUE INDEX PK_cz_content
 	ON cz_content ( -- cz_content
 		cnum ASC -- cnum
@@ -68,7 +69,7 @@ CREATE UNIQUE INDEX PK_cz_content
 -- cz_content
 ALTER TABLE cz_content
 	ADD
-		CONSTRAINT PK_cz_content -- cz_content ±âº»Å°
+		CONSTRAINT PK_cz_content -- cz_content ï¿½âº»Å°
 		PRIMARY KEY (
 			cnum -- cnum
 		);
@@ -78,10 +79,10 @@ ALTER TABLE cz_content
 	ADD
 		CONSTRAINT FK_cz_user_TO_cz_content -- cz_user -> cz_content
 		FOREIGN KEY (
-			unum -- À¯Àú¹øÈ£
+			unum -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		)
 		REFERENCES cz_user ( -- cz_user
-			unum -- À¯Àú¹øÈ£
+			unum -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		);
 
 -------------------------------------------
@@ -98,8 +99,8 @@ DROP TABLE cz_fallow;
 
 -- cz_fallow
 CREATE TABLE cz_fallow (
-	unum_t INTEGER NOT NULL, -- ¼¿·´
-	unum_s INTEGER NULL      -- ÆÈ·Î¿ö
+	unum_t INTEGER NOT NULL, -- ï¿½ï¿½ï¿½ï¿½
+	unum_s INTEGER NULL      -- ï¿½È·Î¿ï¿½
 );
 
 -- cz_fallow
@@ -107,10 +108,10 @@ ALTER TABLE cz_fallow
 	ADD
 		CONSTRAINT FK_cz_user_TO_cz_fallow -- cz_user -> cz_fallow
 		FOREIGN KEY (
-			unum_t -- ¼¿·´
+			unum_t -- ï¿½ï¿½ï¿½ï¿½
 		)
 		REFERENCES cz_user ( -- cz_user
-			unum -- À¯Àú¹øÈ£
+			unum -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		);
 
 -- cz_fallow
@@ -118,10 +119,10 @@ ALTER TABLE cz_fallow
 	ADD
 		CONSTRAINT FK_cz_user_TO_cz_fallow2 -- cz_user -> cz_fallow2
 		FOREIGN KEY (
-			unum_s -- ÆÈ·Î¿ö
+			unum_s -- ï¿½È·Î¿ï¿½
 		)
 		REFERENCES cz_user ( -- cz_user
-			unum -- À¯Àú¹øÈ£
+			unum -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		)
 		;
 ------------------------------------------
